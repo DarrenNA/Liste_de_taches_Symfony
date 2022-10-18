@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TaskController!{% endblock %}
+
+{% block body %}
+<div class="example-wrapper w-100">
+    <a class="btn btn-primary float-right" style="float:right;" href="{{ path('app_task_new') }}">Nouvelle tâche</a>
+    <h1 class="mb-5">Liste des tâches</h1>
+
+
+    <table>
+        <thead>
+        <tr>
+            <th class="p-2">Création</th>
+            <th class="p-2">Libellé</th>
+            <th class="p-2">Réalisé</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for task in tasks %}
+        <tr>
+            <td class="p-2">{{ task.createdAt|date('d/m/Y H:i') }}</td>
+            <td class="p-2">{{ task.label }}</td>
+            <td class="p-2">
+                {% if task.done %}
+                    Oui
+                {% else %}
+                    Non
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
